@@ -1,68 +1,129 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
 import DebtManager from "@/components/DebtManager";
 import { AuthProvider, useAuth } from "@/lib/auth";
 
 function LoginForm() {
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
-    const { login } = useAuth();
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const { login } = useAuth();
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        await login(email, name);
-    };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await login(email, name);
+  };
 
-    return (
-        <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow">
-            <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Email</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                        required
-                    />
-                </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Name</label>
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                        required
-                    />
-                </div>
-                <button
-                    type="submit"
-                    className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                    Login
-                </button>
-            </form>
-        </div>
-    );
+  return (
+    <div
+      style={{
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+        background: "#eaeaea",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          background: "#d0d0d0",
+          padding: "50px 25px",
+          borderRadius: "5px",
+          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <h2 style={{ textShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", color: "white" }}>Login</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "flex-start",
+              flexDirection: "column",
+            }}
+          >
+            <label style={{ fontSize: "12px", marginTop: "15px" }}>Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Type here..."
+              style={{
+                padding: "5px 10px",
+                boxSizing: "border-box",
+                width: "100%",
+                borderRadius: "5px",
+                border: "1px solid rgba(0, 0, 0, 0.2)",
+              }}
+              required
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "flex-start",
+              flexDirection: "column",
+            }}
+          >
+            <label style={{ fontSize: "12px", marginTop: "15px" }}>Name</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              style={{
+                padding: "5px 10px",
+                boxSizing: "border-box",
+                width: "100%",
+                borderRadius: "5px",
+                border: "1px solid rgba(0, 0, 0, 0.2)",
+              }}
+              placeholder="Type here..."
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            style={{
+              width: "100%",
+              marginTop: "25px",
+              padding: "10px 20px",
+              border: "none",
+              borderRadius: "5px",
+              background: "#539BF5",
+              color: "white",
+              fontWeight: "500",
+              boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            LOGIN
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }
 
 function AppContent() {
-    const { user } = useAuth();
+  const { user } = useAuth();
 
-    return (
-        <main className="min-h-screen bg-gray-50 py-8">
-            {!user ? <LoginForm /> : <DebtManager />}
-        </main>
-    );
+  return (
+    <main className="min-h-screen bg-gray-50 py-8">
+      {!user ? <LoginForm /> : <DebtManager />}
+    </main>
+  );
 }
 
 export default function Home() {
-    return (
-        <AuthProvider>
-            <AppContent />
-        </AuthProvider>
-    );
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  );
 }

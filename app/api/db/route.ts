@@ -58,3 +58,43 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
     }
 }
+
+export async function DELETE(request: Request) {
+    try {
+      const { email } = await request.json();
+  
+      if (!email) {
+        return NextResponse.json(
+          { error: 'Bad request: Email is required' },
+          { status: 400 }
+        );
+      }
+  
+      const checkIfUserExistsQuery = `
+        SELECT * FROM "User" WHERE email=$1
+      `;
+      const paramsForCheckingIfUserExists = [email];
+      const userExists = await pool.query(checkIfUserExistsQuery, paramsForCheckingIfUserExists);
+  
+      if (userExists.rows.length === 0) {
+        return NextResponse.json(
+          { error: `User with the email ${email} does not exist` },
+          { status: 404 }
+        );
+      }
+  
+      const deleteUserQuery = `
+        DELETE FROM "User" WHERE email=$1 RETURNING *;
+      `;
+      const res = await pool.query(deleteUserQuery, paramsForCheckingIfUserExists);
+  
+      return NextResponse.json(
+        { message: `User with email ${email} deleted successfully`},
+        { status: 200 }
+      );
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    }
+  }
+  

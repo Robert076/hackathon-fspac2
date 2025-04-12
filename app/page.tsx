@@ -32,13 +32,15 @@ function LoginForm() {
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
-          background: "#d0d0d0",
+          background: "#c0c0c0",
           padding: "50px 25px",
           borderRadius: "5px",
           boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
         }}
       >
-        <h2 style={{ textShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", color: "white" }}>Login</h2>
+        <h2 style={{ textShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", color: "white" }}>
+          Welcome back!
+        </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div
             style={{
@@ -48,7 +50,16 @@ function LoginForm() {
               flexDirection: "column",
             }}
           >
-            <label style={{ fontSize: "12px", marginTop: "15px" }}>Email</label>
+            <label
+              style={{
+                fontSize: "12px",
+                marginTop: "15px",
+                color: "white",
+                textShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              Email
+            </label>
             <input
               type="email"
               value={email}
@@ -72,7 +83,16 @@ function LoginForm() {
               flexDirection: "column",
             }}
           >
-            <label style={{ fontSize: "12px", marginTop: "15px" }}>Name</label>
+            <label
+              style={{
+                fontSize: "12px",
+                marginTop: "15px",
+                color: "white",
+                textShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              Name
+            </label>
             <input
               type="text"
               value={name}

@@ -13,4 +13,24 @@ model User {
   firstName String
   lastName  String
   password  String
+  Debt      Debt[]
+}
+
+model Debt {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  type           DebtType
+  balance        Decimal  @db.Decimal(12, 2)
+  interestRate   Decimal  @db.Decimal(5, 2)
+  minimumPayment Decimal  @db.Decimal(10, 2)
+  dueDate        DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum DebtType {
+  mortgage
+  personal
+  student
+  credit_card
 }

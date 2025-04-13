@@ -1,4 +1,4 @@
-import { Debt } from '@/components/DebtManager/types';
+import { Debt } from '@/types';
 
 export interface User {
     id: string;

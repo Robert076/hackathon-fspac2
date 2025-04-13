@@ -1,4 +1,4 @@
-import { Debt, DebtCalculation, Strategy } from './types';
+import { Debt, DebtCalculation, Strategy } from '../types';
 
 export const calculateMonthlyPayment = (
     principal: number,

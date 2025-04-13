@@ -1,17 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import DebtManager from "@/components/DebtManager";
-import { AuthProvider, useAuth } from "@/lib/auth";
 
-function LoginForm() {
+export default function LoginForm() {
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const { login } = useAuth();
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await login(email, name);
   };
 
   return (
@@ -91,12 +87,12 @@ function LoginForm() {
                 textShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
               }}
             >
-              Name
+              Password
             </label>
             <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               style={{
                 padding: "5px 10px",
                 boxSizing: "border-box",
@@ -127,23 +123,5 @@ function LoginForm() {
         </form>
       </div>
     </div>
-  );
-}
-
-function AppContent() {
-  const { user } = useAuth();
-
-  return (
-    <main className="min-h-screen bg-gray-50 py-8">
-      {!user ? <LoginForm /> : <DebtManager />}
-    </main>
-  );
-}
-
-export default function Home() {
-  return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
   );
 }

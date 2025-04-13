@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { styleText } from "util";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -19,7 +21,10 @@ export default function LoginForm() {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        background: "#eaeaea",
+        backgroundImage: "url('./bg.jpeg')",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
       }}
     >
       <div
@@ -28,7 +33,7 @@ export default function LoginForm() {
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
-          background: "#c0c0c0",
+          background: "rgba(0, 0, 0, 0.7)",
           padding: "50px 25px",
           borderRadius: "5px",
           boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
@@ -48,10 +53,11 @@ export default function LoginForm() {
           >
             <label
               style={{
-                fontSize: "12px",
+                fontSize: "11px",
                 marginTop: "15px",
                 color: "white",
                 textShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                marginBottom: "2px",
               }}
             >
               Email
@@ -81,10 +87,11 @@ export default function LoginForm() {
           >
             <label
               style={{
-                fontSize: "12px",
+                fontSize: "11px",
                 marginTop: "15px",
                 color: "white",
                 textShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                marginBottom: "2px",
               }}
             >
               Password
@@ -120,6 +127,26 @@ export default function LoginForm() {
           >
             LOGIN
           </button>
+          <div
+            style={{
+              width: "100%",
+              textAlign: "center",
+              marginTop: "20px",
+            }}
+          >
+            <a
+              href="#"
+              style={{
+                fontSize: "11px",
+                color: "#539BF5",
+              }}
+              onClick={() => {
+                toast.success("Try to remember it next time :)");
+              }}
+            >
+              Forgot password?
+            </a>
+          </div>
         </form>
       </div>
     </div>

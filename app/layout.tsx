@@ -8,7 +8,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Toaster position="bottom-center"></Toaster>
+        <Toaster
+          position="bottom-center"
+          toastOptions={{ style: { fontSize: "12px" } }}
+        ></Toaster>
         {children}
       </body>
     </html>

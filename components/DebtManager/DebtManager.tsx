@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import DebtDashboard from "@/components/DebtDashboard";
-import DebtCalculator from "@/components/DebtCalculator";
-import DebtStrategy from "@/components/DebtStrategy";
+import DebtDashboard from "@/components/DebtManager/DebtDashboard";
+import DebtCalculator from "@/components/DebtManager/DebtCalculator";
+import DebtStrategy from "@/components/DebtManager/DebtStrategy";
 import { Debt } from "@/types";
 import { useAuth } from "@/lib/auth";
 import { db } from "@/lib/models";

@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { styleText } from "util";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -10,6 +9,18 @@ export default function LoginForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    try {
+      const res = await fetch(`/api/db/user/${email}`);
+      const data = await res.json();
+      if (!res.ok) {
+        toast.error(data.error || "Something went wrong");
+        return;
+      }
+      console.log("User data:", data);
+      return data;
+    } catch (error: any) {
+      toast.error(error);
+    }
   };
 
   return (

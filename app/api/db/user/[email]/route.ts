@@ -11,32 +11,32 @@ const pool = new Pool({
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: { email: string } }
 ) {
   try {
-    const { id } = params;
+    const { email } = await params;
 
-    if (!id || isNaN(Number(id))) {
+    if (!email) {
       return NextResponse.json(
-        { error: 'Invalid or missing ID' },
+        { error: 'Invalid or missing email' },
         { status: 400 }
       );
     }
 
-    const query = 'SELECT * FROM "User" WHERE id = $1';
-    const values = [id];
+    const query = 'SELECT * FROM "User" WHERE email = $1';
+    const values = [email];
     const res = await pool.query(query, values);
 
     if (res.rows.length === 0) {
       return NextResponse.json(
-        { error: `User with id ${id} not found` },
+        { error: `User with email ${email} not found` },
         { status: 404 }
       );
     }
 
     return NextResponse.json(res.rows[0], { status: 200 });
   } catch (error: any) {
-    console.error('Error fetching user by ID:', error.message);
+    console.error('Error fetching user by email:', error.message);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
